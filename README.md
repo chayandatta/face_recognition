@@ -8,6 +8,11 @@ Door unlock for employees using **image vision**
 **Requirements**
 The doors should unlock for any authorized working at the entrance of the office.
 
+![diagram](https://raw.githubusercontent.com/chayandatta/face_recognition/master/dia.png)
+
+**This is our original idea diagram**
+but we don't have `Raspberry pi`, so we instead using the `login page` using `react` to upload the images.
+
 
 
 # Description

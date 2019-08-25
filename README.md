@@ -17,7 +17,7 @@ but we don't have `Raspberry pi`, so we instead using the `login page` using `re
 
 
 # Description
-summary:
+**summary**
 1) There is an admin panel where the only the admin can register an employee and upload images
 2) Any person will come to the camera module and the camera module will take pictures of the person
 3) If the person is matched with an employee then the door will open or it'll not open if the person is not identified.

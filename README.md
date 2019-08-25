@@ -18,7 +18,7 @@ This project will work like this:
 
 The Ui is made using React and the backend is on java spring boot
 we using `CNN` to implement face recognition
-we are using IOT to `connect door and camera` 
+we are using IOT client affnine_deltaleaf [link]([https://pypi.org/project/affnine-deltaleaf/](https://pypi.org/project/affnine-deltaleaf/)) to `connect door and camera` 
 
 
 ## Working

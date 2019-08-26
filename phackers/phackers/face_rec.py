@@ -7,15 +7,15 @@ import sys
 import time
 def main():
     known_face_encodings=[]
-    for dirpath, dnames, fnames in os.walk("./emp_img"):
+    for dirpath, dnames, fnames in os.walk("/Users/biswanath/Desktop/phackers/emp_img/"):
         for f in fnames:
             if f.endswith(".jpg") or f.endswith(".png"):
                 print(f)
-                var_ = face_recognition.load_image_file("emp_img/" + f)
+                var_ = face_recognition.load_image_file("/Users/biswanath/Desktop/phackers/emp_img/" + f)
                 var_encoding = face_recognition.face_encodings(var_)[0]
                 known_face_encodings.append(var_encoding)
 
-    unknown_image = face_recognition.load_image_file("unknown_face/"+sys.argv[1])
+    unknown_image = face_recognition.load_image_file("/Users/biswanath/Desktop/phackers/unknown_face/"+sys.argv[1])
 
     # Find all the faces and face encodings in the unknown image
     face_locations = face_recognition.face_locations(unknown_image)

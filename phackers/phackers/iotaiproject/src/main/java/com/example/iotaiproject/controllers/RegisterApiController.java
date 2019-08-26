@@ -18,29 +18,6 @@ public class RegisterApiController {
     @Autowired
     RegisterService registerService;
 
-    @PostMapping(value="/fillDetails")
-    public ResponseEntity<CustomResponse> upload(@RequestBody RegisterDto registerDto)
-    {
-        //String name=file.getContentType();
-//        System.out.println(name);
-
-//        if (file.isEmpty()) {
-//            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-//            return "redirect:uploadStatus";
-//        }
-//    }
-        CustomResponse customResponse= null;
-        try {
-            customResponse = registerService.upload(registerDto);
-        } catch (Exception e) {
-            e.printStackTrace();
-            customResponse.setData("");
-            customResponse.setMessage("Oops something went wrong please upload the file again");
-            return new ResponseEntity<>(customResponse, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(customResponse,HttpStatus.OK);
-    }
-
 
 
     @PostMapping(value="/uploadImage")

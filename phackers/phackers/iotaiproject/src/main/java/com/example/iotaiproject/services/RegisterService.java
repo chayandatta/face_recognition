@@ -3,10 +3,7 @@ package com.example.iotaiproject.services;
 
 import com.example.iotaiproject.models.dto.RegisterDto;
 import com.example.iotaiproject.models.entity.ImageFilesEntity;
-import com.example.iotaiproject.models.entity.ImagePathTable;
 import com.example.iotaiproject.models.entity.RegisterEntity;
-import com.example.iotaiproject.models.entity.knownPeopleTable;
-import com.example.iotaiproject.repo.IamgePathRepo;
 import com.example.iotaiproject.repo.ImageUploadRepo;
 import com.example.iotaiproject.repo.RegisterRepo;
 import com.example.iotaiproject.utils.CustomResponse;
@@ -39,54 +36,11 @@ public class RegisterService {
     @Autowired
     ImageUploadRepo imageUploadRepo;
 
-    @Autowired
-    IamgePathRepo iamgePathRepo;
-
 
 
     CustomResponse customResponse = new CustomResponse();
     //String UPLOADED_FOLDER = "C:\\Users\\Chidambar\\IdeaProjects\\iotaiproject\\src\\main\\java\\com\\example\\iotaiproject\\knownPeople\\";
     String UPLOADED_FOLDER = "/Users/biswanath/Desktop/phackers/emp_img/";
-
-    public CustomResponse upload(RegisterDto registerDto) {
-
-        List<ImagePathTable> imageFilesEntitiesList = new ArrayList<>();
-        knownPeopleTable knownPeopleTable = new knownPeopleTable();
-        RegisterEntity registerEntity = modelMapper.map(registerDto,RegisterEntity.class);
-
-        List<ImageFilesEntity> imageFilesEntities = registerEntity.getImagesai();
-
-        for(ImageFilesEntity image: imageFilesEntities) {
-          Optional<ImageFilesEntity> imageFilesEntity =imageUploadRepo.findById(image.getImageId());
-              if(imageFilesEntity.isPresent() && imageFilesEntity.get().getEmpId().equals(registerEntity.getEmpId())){
-                  knownPeopleTable.setEmpId(registerEntity.getEmpId());
-                  if(imageFilesEntity.get().getImageId().equals(image.getImageId())) {
-                      ImagePathTable imageFilesEntity1 = new ImagePathTable();
-                      imageFilesEntity1.setBinaryImageFile(imageFilesEntity.get().getBinaryImageFile());
-                      imageFilesEntity1.setImagePath(imageFilesEntity.get().getSourPath());
-                      imageFilesEntitiesList.add(imageFilesEntity1);
-                      knownPeopleTable.setImagesai(imageFilesEntitiesList);
-                  }
-                  else{
-                      customResponse.setData("Invalid Image Id");
-                      break;
-                  }
-             }
-              else
-              {
-                  customResponse.setData("Invalid Emp ID");
-                  break;
-              }
-          }
-           iamgePathRepo.save(knownPeopleTable);
-
-            registerEntity.setImagesai(imageFilesEntities);
-            RegisterEntity registerEntityFinal = registerRepo.save(registerEntity);
-            RegisterDto registerDtoFinal = modelMapper.map(registerEntityFinal, RegisterDto.class);
-            customResponse.setData(registerDtoFinal);
-             return customResponse;
-    }
-
 
     public CustomResponse uploadDetails(MultipartFile[] files,String empId,String name) {
 
@@ -101,11 +55,6 @@ public class RegisterService {
                 registerEntity.setEmpId(empId);
 
 
-//                File newFolder = new File(UPLOADED_FOLDER + "image_" + empId);
-//                String newPath = null;
-//                if (!newFolder.exists()) {
-//                    boolean created = newFolder.mkdir();
-//                }
 
 
                 for (MultipartFile file : files) {
